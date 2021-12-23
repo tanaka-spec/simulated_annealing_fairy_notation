@@ -70,13 +70,30 @@ def swap_piece(board: Board, domination):
 			return output
 
 
+def linear_reduction(t, alpha=1):
+	return t - alpha
+
+
 def geometric_reduction(t, alpha=0.99):
 	return t * alpha
 
 
-def run(size=8, function=queen, temp=10000, final_temp=0.1, cooling=geometric_reduction, iteration_per_temp=10):
+def slow_decrease(t, beta=0.99):
+	return t / (1 + beta * t)
+
+
+def name_to_function(name: str):
+	if name == 'linear':
+		return linear_reduction
+	if name == 'slow':
+		return slow_decrease
+	return geometric_reduction
+
+
+def run(size=8, function=queen, temp=10000, final_temp=0.0001, cooling=geometric_reduction, iteration_per_temp=10):
 	board = Board(size=size)
 	domination = dominated_space(size, function)
+	path = [board]
 	while temp > final_temp:
 		for i in range(iteration_per_temp):
 			e = evaluation_function(board, domination)
@@ -112,16 +129,19 @@ def run(size=8, function=queen, temp=10000, final_temp=0.1, cooling=geometric_re
 				p = math.exp(delta_e / temp)
 				if random.random() < p:
 					board = new_board
-
+			path.append(board)
 		temp = cooling(temp)
+
 	ps = set() # to check domination count
 	positions = board.position_piece()
 	for x, y in positions:
 		ps.update(domination[x][y])
 	n = len(ps) # number of dominated nodes
 	print(n)
-	return board
+
+	return board, path
 
 if __name__ == '__main__':
-	print(run(size=20))
+	board, path = run(size=10)
+	print(board)
 

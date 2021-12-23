@@ -117,80 +117,80 @@ def create_fairy_piece(notation: str):
 		for n in notations:
 			# orthogonally or diagonally (all eight possible directions)
 			if n == 'n*':
-				output.add(queen(x, y, size))
+				output.update(queen(x, y, size))
 			elif re.search(r"[1-9][0-9]*\*$", n):
 				limit = int(n[:-1])
-				output.add(diagonal(x, y, size, limit1=limit, limit2=limit, limit3=limit, limit4=limit))
-				output.add(lateral(x, y, size, limit1=limit, limit2=limit, limit3=limit, limit4=limit))
+				output.update(diagonal(x, y, size, limit1=limit, limit2=limit, limit3=limit, limit4=limit))
+				output.update(lateral(x, y, size, limit1=limit, limit2=limit, limit3=limit, limit4=limit))
 
 			# orthogonally (four possible directions)
 			elif n == 'n+':
-				output.add(lateral(x, y, size))
+				output.update(lateral(x, y, size))
 			elif re.search(r"[1-9][0-9]*\+$", n):
 				limit = int(n[:-1])
-				output.add(lateral(x, y, size, limit1=limit, limit2=limit, limit3=limit, limit4=limit))
+				output.update(lateral(x, y, size, limit1=limit, limit2=limit, limit3=limit, limit4=limit))
 
 			# orthogonally forwards
 			elif n == 'n>':
-				output.add(lateral(x, y, size, limit2=0, limit3=0, limit4=0))
+				output.update(lateral(x, y, size, limit2=0, limit3=0, limit4=0))
 			elif re.search(r"[1-9][0-9]*>$", n):
 				limit = int(n[:-1])
-				output.add(lateral(x, y, size, limit1=limit, limit2=0, limit3=0, limit4=0))
+				output.update(lateral(x, y, size, limit1=limit, limit2=0, limit3=0, limit4=0))
 
 			# orthogonally backwards
 			elif n == 'n<':
-				output.add(lateral(x, y, size, limit1=0, limit2=0, limit4=0))
+				output.update(lateral(x, y, size, limit1=0, limit2=0, limit4=0))
 			elif re.search(r"[1-9][0-9]*>$", n):
 				limit = int(n[:-1])
-				output.add(lateral(x, y, size, limit1=0, limit2=0, limit3=limit, limit4=0))
+				output.update(lateral(x, y, size, limit1=0, limit2=0, limit3=limit, limit4=0))
 
 			# orthogonally forwards and backwards
 			elif n == 'n<>':
-				output.add(lateral(x, y, size, limit2=0, limit4=0))
+				output.update(lateral(x, y, size, limit2=0, limit4=0))
 			elif re.search(r"[1-9][0-9]*<>$", n):
 				limit = int(n[:-2])
-				output.add(lateral(x, y, size, limit1=limit, limit2=0, limit3=limit, limit4=0))
+				output.update(lateral(x, y, size, limit1=limit, limit2=0, limit3=limit, limit4=0))
 
 			# orthogonally sideways (used here instead of Parlett's divide symbol.)
 			elif n == 'n=':
-				output.add(lateral(x, y, size, limit1=0, limit3=0))
+				output.update(lateral(x, y, size, limit1=0, limit3=0))
 			elif re.search(r"[1-9][0-9]*=$", n):
 				limit = int(n[:-1])
-				output.add(lateral(x, y, size, limit1=0, limit2=limit, limit3=0, limit4=limit))
+				output.update(lateral(x, y, size, limit1=0, limit2=limit, limit3=0, limit4=limit))
 
 			# orthogonally forwards or sideways
 			elif n == 'n>=':
-				output.add(lateral(x, y, size, limit3=0))
+				output.update(lateral(x, y, size, limit3=0))
 			elif re.search(r"[1-9][0-9]*>=$", n):
 				limit = int(n[:-2])
-				output.add(lateral(x, y, size, limit1=limit, limit2=limit, limit3=0, limit4=limit))
+				output.update(lateral(x, y, size, limit1=limit, limit2=limit, limit3=0, limit4=limit))
 
 			# orthogonally backwards or sideways
 			elif n == 'n<=':
-				output.add(lateral(x, y, size, limit1=0))
+				output.update(lateral(x, y, size, limit1=0))
 			elif re.search(r"[1-9][0-9]*<=$", n):
 				limit = int(n[:-2])
-				output.add(lateral(x, y, size, limit1=0, limit2=limit, limit3=limit, limit4=limit))
+				output.update(lateral(x, y, size, limit1=0, limit2=limit, limit3=limit, limit4=limit))
 
 			# diagonally (four possible directions)
 			elif n == 'nX':
-				output.add(diagonal(x, y, size))
+				output.update(diagonal(x, y, size))
 			elif re.search(r"[1-9][0-9]*X$", n):
 				limit = int(n[:-1])
-				output.add(diagonal(x, y, size, limit1=limit, limit2=limit, limit3=limit, limit4=limit))
+				output.update(diagonal(x, y, size, limit1=limit, limit2=limit, limit3=limit, limit4=limit))
 
 			# diagonally forwards
 			elif n == 'nX>':
-				output.add(diagonal(x, y, size, limit3=0, limit4=0))
+				output.update(diagonal(x, y, size, limit3=0, limit4=0))
 			elif re.search(r"[1-9][0-9]*X>$", n):
 				limit = int(n[:-2])
-				output.add(diagonal(x, y, size, limit1=limit, limit2=limit, limit3=0, limit4=0))
+				output.update(diagonal(x, y, size, limit1=limit, limit2=limit, limit3=0, limit4=0))
 
 			# diagonally backwards
 			elif n == 'nX<':
-				output.add(diagonal(x, y, size, limit1=0, limit2=0))
+				output.update(diagonal(x, y, size, limit1=0, limit2=0))
 			elif re.search(r"[1-9][0-9]*X<$", n):
 				limit = int(n[:-2])
-				output.add(diagonal(x, y, size, limit1=0, limit2=0, limit3=limit, limit4=limit))
+				output.update(diagonal(x, y, size, limit1=0, limit2=0, limit3=limit, limit4=limit))
 		return output
 	return fairy_piece
