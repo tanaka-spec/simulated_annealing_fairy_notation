@@ -18,6 +18,27 @@ Cooling Rate — The rate at which reduces the possibility that the algorithm ac
 
 The evaluation function used was:
 
-![\Large f(x)=\frac{n}{v}+\frac{1}{gv}](https://latex.codecogs.com/svg.latex?\Large&space;f(x)=\frac{n}{v}+\frac{1}{gv}) 
+![f(x)=\frac{n}{v}+\frac{1}{gv}](https://latex.codecogs.com/svg.latex?f(x)=\frac{n}{v}+\frac{1}{gv}) 
 
 where n is number of dominated nodes, v is number of all the nodes, g is number of pieces on the board. 
+
+Running the Code
+----------------
+
+To run the code simply just run
+'''
+python sa_main.py
+'''
+This will run the values to be in an size 8 board with queen as the chess piece.
+
+To run the code with different inputs it could be done by using
+'''
+python sa_main.py -s 10 -n nX
+'''
+starts a value with bishop and size 10 board
+
+You could also run
+'''
+python sa_main.py --help
+'''
+to see the different options it offers

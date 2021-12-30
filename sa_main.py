@@ -26,9 +26,9 @@ EXAMPLES:	(1) python sa_main.py
 	parser.add_option('-e', '--epoch', dest='iteration_per_temp', type='int',
 						help='iteration per temperature decrease (epoch)', default=10)
 	parser.add_option('-d', '--display', action='store_false', dest='display',
-						help='not shows the path of the annealing', default=True)
+						help='to not show the path of the annealing', default=True)
 	parser.add_option('-o', '--outline', action='store_false', dest='outline',
-						help='not shows the outline of dominated space', default=True)
+						help='to not show the outline of dominated space', default=True)
 	parser.add_option('-r', '--framerate', dest='rate', type='int',
 						help='framerate of the animation (ms)', default=0.01)
 
