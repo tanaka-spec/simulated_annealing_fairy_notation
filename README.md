@@ -18,6 +18,6 @@ Cooling Rate — The rate at which reduces the possibility that the algorithm ac
 
 The evaluation function used was:
 
-![\Large f(x)=\frac{n}{v}+\frac{1}{gv}](https://latex.codecogs.com/svg.latex?\Large&space;x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}) 
+![\Large f(x)=\frac{n}{v}+\frac{1}{gv}](https://latex.codecogs.com/svg.latex?\Large&space;f(x)=\frac{n}{v}+\frac{1}{gv}) 
 
 where n is number of dominated nodes, v is number of all the nodes, g is number of pieces on the board. 
