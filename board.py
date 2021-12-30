@@ -6,7 +6,12 @@ class Board:
 
 
 	def __str__(self):
-		return str(self.array)
+		output = ""
+		for y in range(self.size):
+			for x in range(self.size):
+				output += str(self.array[x][y]) + ' '
+			output += '\n'
+		return output
 
 
 	def __len__(self):
@@ -73,6 +78,10 @@ class Board:
 		for i in range(self.size):
 			output.array[i] = self.array[i].copy()
 		return output
+
+
+	def piece_exist(self, x, y):
+		return self.array[x][y] != 0
 
 
 if __name__ == '__main__':

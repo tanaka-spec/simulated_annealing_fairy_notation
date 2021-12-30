@@ -90,8 +90,17 @@ def name_to_function(name: str):
 	return geometric_reduction
 
 
-def run(size=8, function=queen, temp=10000, final_temp=0.0001, cooling=geometric_reduction, iteration_per_temp=10):
+def covers(board, domination):
+	ps = set()
+	positions = board.position_piece()
+	for x, y in positions:
+		ps.update(domination[x][y])
+	return ps
+
+
+def run(size=8, function=queen, temp=1000, final_temp=0.1, cooling=geometric_reduction, iteration_per_temp=10):
 	board = Board(size=size)
+	best_board = board
 	domination = dominated_space(size, function)
 	path = [board]
 	while temp > final_temp:
@@ -104,6 +113,7 @@ def run(size=8, function=queen, temp=10000, final_temp=0.0001, cooling=geometric
 				delta_e = new_e - e
 				if delta_e > 0:
 					board = new_board
+					best_board = board
 					continue
 				
 				p = math.exp(delta_e / temp)
@@ -131,15 +141,7 @@ def run(size=8, function=queen, temp=10000, final_temp=0.0001, cooling=geometric
 					board = new_board
 			path.append(board)
 		temp = cooling(temp)
-
-	ps = set() # to check domination count
-	positions = board.position_piece()
-	for x, y in positions:
-		ps.update(domination[x][y])
-	n = len(ps) # number of dominated nodes
-	print(n)
-
-	return board, path
+	return best_board, path
 
 if __name__ == '__main__':
 	board, path = run(size=10)
