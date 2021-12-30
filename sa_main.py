@@ -6,10 +6,11 @@ import time
 def main():
 	import optparse
 	usage_str = """
-	USAGE:      python sa_main.py <options>
-	EXAMPLES:	(1) python sa_main.py
-				- starts a value with queen and size 8 board
-			(2) 
+python sa_main.py <options>
+EXAMPLES:	(1) python sa_main.py
+			- starts a value with queen and size 8 board
+		(2) python sa_main.py -s 10 -n nX
+			- starts a value with bishop and size 10 board
 	"""
 	parser = optparse.OptionParser(usage_str)
 	parser.add_option('-s', '--size', dest='size', type='int',
@@ -24,10 +25,10 @@ def main():
 						help='cooling function of the temperature (linear, geometric, slow)', default='geometric')
 	parser.add_option('-e', '--epoch', dest='iteration_per_temp', type='int',
 						help='iteration per temperature decrease (epoch)', default=10)
-	parser.add_option('-d', '--display', dest='display', type='int',
-						help='shows the path of the annealing (0 to not show)', default=True)
-	parser.add_option('-o', '--outline', dest='outline', type='int',
-						help='shows the outline of dominated space (0 to not show)', default=True)
+	parser.add_option('-d', '--display', action='store_false', dest='display',
+						help='not shows the path of the annealing', default=True)
+	parser.add_option('-o', '--outline', action='store_false', dest='outline',
+						help='not shows the outline of dominated space', default=True)
 	parser.add_option('-r', '--framerate', dest='rate', type='int',
 						help='framerate of the animation (ms)', default=0.01)
 

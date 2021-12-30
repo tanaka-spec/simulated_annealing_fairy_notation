@@ -36,10 +36,11 @@ class Window():
 					color = 'black'
 				else:    
 					color = 'white'
-			if color == 'white':
-				color = 'black'
-			else:    
-				color = 'white'
+			if (board.size % 2) == 0:
+				if color == 'white':
+					color = 'black'
+				else:    
+					color = 'white'
 		self.root.update()
 
 
